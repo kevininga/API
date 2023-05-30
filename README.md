@@ -3,7 +3,7 @@
 For my project I would like to create a Premier League CRUD app for the 22/23 season. It aims to 
 provide comprehensive football data, including player details, team information and match statistics. I will be using API-Football as my third-party API which will help fetch data to seed our database and potentially retrieve real-time data for certain features.
 
-![Image](/Users/kevininga/Desktop/project-2/api/premierleague.jpg)
+![Image](pl.jpg)
 
 ## Routes
 '/api/players'
@@ -32,21 +32,21 @@ CRUD Operations:
 
 ## Models
 Player:
-name (String)
-position (String)
-team (Reference to Team model)
-nationality (String)
+- name (String)
+- position (String)
+- team (Reference to Team model)
+- nationality (String)
 
 Team:
-name (String)
-coach (String)
-stadium (String)
-city (String)
+- name (String)
+- coach (String)
+- stadium (String)
+- city (String)
 
 Match:
-teams (Array of references to Team model)
-date (Date)
-location (String)
+- teams (Array of references to Team model)
+- date (Date)
+- location (String)
 
 ## MVP Goals
 As an MVP (Most Viable Project), the Premier League Statsbomb app will aim to accomplish the following user stories:
