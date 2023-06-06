@@ -1,11 +1,17 @@
 import mongoose from 'mongoose'
 
 const teamSchema = new mongoose.Schema({
-    name: String,
-    region: String,
-    capital: Array,
-    languages: Object
-})
+    team: {
+        id: Number,
+        name: String,
+    },
+    venue: {
+        id: Number,
+        name: String,
+        city: String,
+        capacity: Number,
+    }
+});
 
 const Team = mongoose.model('Team', teamSchema)
 

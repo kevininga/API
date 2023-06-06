@@ -3,8 +3,6 @@
 For my project I would like to create a Premier League CRUD app for the 22/23 season. It aims to 
 provide comprehensive football data, including player details, team information and match statistics. I will be using API-Football as my third-party API which will help fetch data to seed our database and potentially retrieve real-time data for certain features.
 
-![Image](premier-league.jpg)
-
 ## Routes
 '/api/players'
 CRUD Operations:
