@@ -4,7 +4,7 @@ import Team from '../models/teams.js';
 const router = express.Router();
 
 // Get all teams
-router.get('/team/', async (req, res) => {
+router.get('api/team/', async (req, res) => {
     try {
         const teams = await Team.find({});
         res.status(200).json(teams);
@@ -14,7 +14,7 @@ router.get('/team/', async (req, res) => {
 });
 
 //Find OneTeam
-router.get('/team/:id', async (req, res) => {
+router.get('api/team/:id', async (req, res) => {
     try {
       const { id } = req.params;
       const team = await Team.findById(id);
@@ -31,7 +31,7 @@ router.get('/team/:id', async (req, res) => {
   });
   
   // Get a Team by Name
-  router.get('/team/name/:name', async (req, res) => {
+  router.get('api/team/name/:name', async (req, res) => {
     const { name } = req.params;
   
     try {
@@ -50,7 +50,7 @@ router.get('/team/:id', async (req, res) => {
   
   
   // Post Route
-  router.post('/team', async (req, res) => {
+  router.post('api/team/', async (req, res) => {
     const team = req.body;
   
     try {
@@ -83,7 +83,7 @@ router.get('/team/:id', async (req, res) => {
   };
   
   // Delete Route
-  router.delete('/team/:id', async (req, res) => {
+  router.delete('api/team/:id', async (req, res) => {
     const { id } = req.params;
   
     try {
@@ -102,7 +102,7 @@ router.get('/team/:id', async (req, res) => {
   });
   
   // Delete Route
-  router.delete('/team/name/:name', async (req, res) => {
+  router.delete('api/team/name/:name', async (req, res) => {
     const { name } = req.params;
   
     try {

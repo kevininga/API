@@ -4,7 +4,7 @@ import Player from '../models/players.js';
 const router = express.Router();
 
 // Get all players
-router.get('/players/', async (req, res) => {
+router.get('api/players/', async (req, res) => {
     try {
         const players = await Player.find({});
         res.status(200).json(players);
@@ -14,7 +14,7 @@ router.get('/players/', async (req, res) => {
 });
 
 // Get a single player by ID
-router.get('/players/:id', async (req, res) => {
+router.get('api/players/:id', async (req, res) => {
     try {
         const player = await Player.findById(req.params.id);
         if (player == null) {
@@ -26,7 +26,7 @@ router.get('/players/:id', async (req, res) => {
     }
 });
 
-router.get('/players/:name', async (req, res) => {
+router.get('api/players/:name', async (req, res) => {
     try {
       const { name } = req.params;
       const player = await Player.findOne({ name });
@@ -43,7 +43,7 @@ router.get('/players/:name', async (req, res) => {
   });
 
 // Add a new player
-router.post('/players/', async (req, res) => {
+router.post('api/players/', async (req, res) => {
     const player = req.body;
   
     try {
@@ -62,7 +62,7 @@ router.post('/players/', async (req, res) => {
   });
 
 // Update a player
-router.put('/players/:name', async (req, res) => {
+router.put('api/players/:name', async (req, res) => {
     const { name } = req.params;
     const { age, number, position, team } = req.body; // destructure team from req.body
   
@@ -92,7 +92,7 @@ router.put('/players/:name', async (req, res) => {
 });
 
 // Delete Route
-router.delete('/players/:id', async (req, res) => {
+router.delete('api/players/:id', async (req, res) => {
     const { id } = req.params;
   
     try {
@@ -110,7 +110,7 @@ router.delete('/players/:id', async (req, res) => {
     }
   });
 
-  router.delete('/players/:name', async (req, res) => {
+  router.delete('api/players/:name', async (req, res) => {
     const { name } = req.params;
   
     try {

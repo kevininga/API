@@ -5,19 +5,25 @@ import db from './connection.js';
 import teamRawData from '../data/teams.json' assert {type: 'json'}
 import playerRawData from '../data/players.json' assert {type: 'json'}
 
+console.log(teamRawData)
+console.log(playerRawData);
+
+
 //Teams Data
-let teamData = teamRawData.map(team => {
+let teamData = teamRawData.response.map(team => {
     return {
     team: {
-        name: team.name
+        name: team.team.name
     },
     venue:{
-        name: team.name,
-        city: team.city,
-        capacity: team.capacity    
+        name: team.venue.name,
+        city: team.venue.city,
+        capacity: team.venue.capacity    
     }
     }
 })
+
+
 
 let makeTeams = async() => {
     try {
@@ -35,17 +41,20 @@ makeTeams()
 
 
 // Players Data
-let playerData = playerRawData.map(player => {
-    return {
-        name: player.name,
-        age: player.age,
-        number: player.number,
-        position: player.position,
-        team: {
-            name: player.name
-        }
-    }
-})
+let playerData = playerRawData.response.flatMap(team => 
+    team.players.map(player => {
+      return {
+          name: player.name,
+          age: player.age,
+          number: player.number,
+          position: player.position,
+          team: {
+              name: team.team.name
+          }
+      }
+    })
+  );
+  
 
 let makePlayers = async() => {
     try {

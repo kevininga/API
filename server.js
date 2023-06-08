@@ -15,10 +15,10 @@ db.on('connected', async () => {
 
 //ENV Variables 
 dotenv.config()
-let PORT = process.env.PORT || 4000
+let PORT = process.env.PORT || 5000
 
-app.use('/api/team', teamRoute);
-app.use('/api/players', playerRoute);
+app.use('/api/team/', teamRoute);
+app.use('/api/players/', playerRoute);
 
 
 app.listen(PORT, () => {
