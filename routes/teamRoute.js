@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
   });
   
   // Get a Team by Name
-  router.get('/:name', async (req, res) => {
+  router.get('/name/:name', async (req, res) => {
     const { name } = req.params;
   
     try {
@@ -49,7 +49,7 @@ router.get('/:id', async (req, res) => {
   
   
   
-  // Post Route
+  // Create a new team
   router.post('/', async (req, res) => {
     const team = req.body;
   
@@ -68,7 +68,7 @@ router.get('/:id', async (req, res) => {
     }
   });
   
-  // Put Route
+  // update team
   const updateTeam = async (req, res) => {
       const { id } = req.params;
       try {
@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
       }
   };
   
-  // Delete Route
+  // Delete a single team by id
   router.delete('/:id', async (req, res) => {
     const { id } = req.params;
   
@@ -101,8 +101,8 @@ router.get('/:id', async (req, res) => {
     }
   });
   
-  // Delete Route
-  router.delete('/:name', async (req, res) => {
+  // Delete team by team name
+  router.delete('/name/:name', async (req, res) => {
     const { name } = req.params;
   
     try {

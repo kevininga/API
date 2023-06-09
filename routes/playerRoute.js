@@ -26,6 +26,22 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Get all players by team name
+router.get('/team/:teamName', async (req, res) => {
+  try {
+    const { teamName } = req.params;
+    const players = playersData[teamName.toLowerCase()];
+
+    if (!players) {
+      return res.status(404).json({ message: 'Team not found' });
+    }
+
+    res.status(200).json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 //Get a single player by name
 router.get('/name/:name', async (req, res) => {
     try {
@@ -62,8 +78,8 @@ router.post('/', async (req, res) => {
     }
   });
 
-// Update a player
-router.put('/:name', async (req, res) => {
+// Update a single player by name
+router.put('/name/:name', async (req, res) => {
     const { name } = req.params;
     const { age, number, position, team } = req.body; // destructure team from req.body
   
@@ -92,7 +108,7 @@ router.put('/:name', async (req, res) => {
     }
 });
 
-// Delete Route
+// Delete a player by id
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
   
@@ -111,6 +127,7 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
+  //Delete a player by name
   router.delete('/name/:name', async (req, res) => {
     const { name } = req.params;
   
