@@ -30,9 +30,9 @@ router.get('/:id', async (req, res) => {
 router.get('/team/:teamName', async (req, res) => {
   try {
     const { teamName } = req.params;
-    const players = playersData[teamName.toLowerCase()];
+    const players = await Player.find({ 'team.name': teamName });
 
-    if (!players) {
+    if (players.length === 0) {
       return res.status(404).json({ message: 'Team not found' });
     }
 
@@ -41,6 +41,7 @@ router.get('/team/:teamName', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 
 //Get a single player by name
 router.get('/name/:name', async (req, res) => {
