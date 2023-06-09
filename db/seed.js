@@ -47,7 +47,7 @@ const requests = teams.map(team => {
     url: 'https://api-football-v1.p.rapidapi.com/v3/players/squads',
     params: {team: team},
     headers: {
-      'X-RapidAPI-Key': 'faa093b0d4mshd46587634110526p1c8c58jsna79db5e0448b',
+      'X-RapidAPI-Key': apiKey,
       'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
     }
   };

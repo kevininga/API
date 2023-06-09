@@ -26,7 +26,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.get('/:name', async (req, res) => {
+//Get a single player by name
+router.get('/name/:name', async (req, res) => {
     try {
       const { name } = req.params;
       const player = await Player.findOne({ name });
@@ -110,7 +111,7 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-  router.delete('api/players/:name', async (req, res) => {
+  router.delete('/name/:name', async (req, res) => {
     const { name } = req.params;
   
     try {

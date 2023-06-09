@@ -2,70 +2,59 @@ import mongoose from 'mongoose';
 import Team from '../models/teams.js';
 import Player from '../models/players.js';
 import db from './connection.js';
-import teamRawData from '../data/teams.json' assert {type: 'json'}
-import playerRawData from '../data/players.json' assert {type: 'json'}
-
-console.log(teamRawData)
-console.log(playerRawData);
-
+import teamRawData from '../data/teams.json' assert {type: 'json'};
+import playerRawData from '../data/players.json' assert {type: 'json'};
 
 //Teams Data
 let teamData = teamRawData.response.map(team => {
-    return {
+  return {
     team: {
-        name: team.team.name
+      name: team.team.name
     },
     venue:{
-        name: team.venue.name,
-        city: team.venue.city,
-        capacity: team.venue.capacity    
+      name: team.venue.name,
+      city: team.venue.city,
+      capacity: team.venue.capacity    
     }
-    }
-})
+  };
+});
 
+let makeTeams = async () => {
+  try {
+    await Team.deleteMany();
+    await Team.create(teamData);
+    console.log('Teams created and seeded');
+  } catch (error) {
+    console.error('Error: ', error);
+  }
+};
 
-
-let makeTeams = async() => {
-    try {
-        await Team.deleteMany()
-        await Team.create(teamData)
-        console.log('Team created and seeded')
-        // mongoose.connection.close()
-    }
-    catch(error) {
-        console.error('Error: ', error)
-    }
-}
-
-makeTeams()
-
+makeTeams();
 
 // Players Data
-let playerData = playerRawData.response.flatMap(team => 
-    team.players.map(player => {
-      return {
-          name: player.name,
-          age: player.age,
-          number: player.number,
-          position: player.position,
-          team: {
-              name: team.team.name
-          }
+let playerData = Object.values(playerRawData).flatMap(teamData => {
+  const team = teamData.response[0].team;
+  return teamData.response[0].players.map(player => {
+    return {
+      name: player.name,
+      age: player.age,
+      number: player.number,
+      position: player.position,
+      team: {
+        name: team.name
       }
-    })
-  );
-  
+    };
+  });
+});
 
-let makePlayers = async() => {
-    try {
-        await Player.deleteMany()
-        await Player.create(playerData)
-        console.log('Player created and seeded')
-        // mongoose.connection.close()
-    }
-    catch(error) {
-        console.error('Error: ', error)
-    }
-}
+let makePlayers = async () => {
+  try {
+    await Player.deleteMany();
+    await Player.create(playerData);
+    console.log('Players created and seeded');
+  } catch (error) {
+    console.error('Error: ', error);
+  }
+};
 
-makePlayers()
+makePlayers();
