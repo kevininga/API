@@ -17,7 +17,7 @@ db.on('connected', async () => {
 dotenv.config()
 let PORT = process.env.PORT || 5000
 
-app.use('/api/team/', teamRoute);
+app.use('/api/teams/', teamRoute);
 app.use('/api/players/', playerRoute);
 
 
