@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Find OneTeam
+//Find a single team by id
 router.get('/:id', async (req, res) => {
     try {
       const { id } = req.params;
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
   });
   
   // Get a Team by Name
-  router.get('/name/:name', async (req, res) => {
+  router.get('/:name', async (req, res) => {
     const { name } = req.params;
   
     try {
@@ -102,7 +102,7 @@ router.get('/:id', async (req, res) => {
   });
   
   // Delete team by team name
-  router.delete('/name/:name', async (req, res) => {
+  router.delete('/:name', async (req, res) => {
     const { name } = req.params;
   
     try {
