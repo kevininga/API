@@ -46,14 +46,14 @@ router.get('/team/:teamName', async (req, res) => {
 router.get('/number/:number', async (req, res) => {
   try {
     const { number } = req.params;
-    const player = await Player.findOne({ number });
+    const players = await Player.find({ number });
 
-    if (!player) {
-      // Player with the specified number was not found
-      return res.status(404).json({ error: 'Player number was not found' });
+    if (players.length === 0) {
+      // No players with the specified number were found
+      return res.status(404).json({ error: 'No players with this number were found' });
     }
 
-    res.status(200).json(player);
+    res.status(200).json(players);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
