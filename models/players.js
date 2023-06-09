@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
 const playerSchema = new mongoose.Schema({
-    id: Number,
     name: String,
     age: Number,
     number: Number,
